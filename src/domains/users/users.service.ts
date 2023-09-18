@@ -10,8 +10,11 @@ export class UsersService {
     return this.prisma.user.create({ data: createUserDto });
   }
 
-  findAll() {
-    return this.prisma.user.findMany();
+  async findAll() {
+    const users = await this.prisma.user.findMany({
+      select: { accountId: true, diaries: true, goals: true, name: true },
+    });
+    return users;
   }
 
   findOne(id: number) {
