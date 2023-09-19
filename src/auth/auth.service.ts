@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from '../domains/users/users.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { AuthUser } from 'src/utils/auth.user';
 
 @Injectable()
 export class AuthService {
@@ -16,6 +17,8 @@ export class AuthService {
     if (!isMatch) {
       throw new UnauthorizedException();
     }
+
+    AuthUser.setId(user.id);
 
     const payload = { id: user.id, accountId: user.accountId };
     return {

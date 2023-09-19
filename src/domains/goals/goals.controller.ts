@@ -33,7 +33,7 @@ export class GoalsController {
     const userId = +req.user.id;
     const goal = await this.goalsService.findOne({ userId, id });
 
-    if (!goal) throw new BadRequestException(errorMessage['default']);
+    if (!goal) throw new BadRequestException(errorMessage['0000']);
 
     return this.goalsService.remove(+id, userId);
   }

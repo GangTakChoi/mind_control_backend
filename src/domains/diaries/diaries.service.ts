@@ -25,7 +25,7 @@ export class DiariesService {
     return this.prisma.diaryGoal.createMany({ data: goalList });
   }
 
-  findAllOfMe(userId: number) {
+  findMyAll(userId: number) {
     return this.prisma.diary.findMany({
       where: { userId },
       select: { id: true, content: true, goals: true },

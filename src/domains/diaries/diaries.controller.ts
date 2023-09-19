@@ -25,9 +25,9 @@ export class DiariesController {
   }
 
   @Get()
-  findAllOfMe(@Request() req) {
+  findMyAll(@Request() req) {
     const userId = req.user.id;
-    return this.diariesService.findAllOfMe(userId);
+    return this.diariesService.findMyAll(userId);
   }
 
   @Delete(':id')
