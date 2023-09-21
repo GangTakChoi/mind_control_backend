@@ -14,7 +14,6 @@ model User {
   id    Int     @default(autoincrement()) @id
   accountId String @unique
   password String
-  name  String
   diaries Diary[]
   goals Goal[]
   createdAt DateTime @default(now())

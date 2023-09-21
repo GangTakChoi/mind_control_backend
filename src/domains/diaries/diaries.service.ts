@@ -28,8 +28,23 @@ export class DiariesService {
   findMyAll(userId: number) {
     return this.prisma.diary.findMany({
       where: { userId },
-      select: { id: true, content: true, goals: true },
+      select: {
+        id: true,
+        content: true,
+        mindState: true,
+        createdAt: true,
+        goals: true,
+      },
+      orderBy: [
+        {
+          id: 'desc',
+        },
+      ],
     });
+  }
+
+  findOne(id: number) {
+    return this.prisma.diary.findUnique({ where: { id } });
   }
 
   remove(id: number, userId: number) {

@@ -7,6 +7,7 @@ import {
   Delete,
   Request,
   ParseIntPipe,
+  BadRequestException,
 } from '@nestjs/common';
 import { DiariesService } from './diaries.service';
 import { CreateDiaryDto } from './dto/create-diary.dto';
@@ -31,8 +32,15 @@ export class DiariesController {
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number, @Request() req) {
+  async remove(@Param('id', ParseIntPipe) id: number, @Request() req) {
     const userId = req.user.id;
+
+    const diary = await this.diariesService.findOne(id);
+
+    if (!diary || diary.userId != userId) {
+      throw new BadRequestException();
+    }
+
     return this.diariesService.remove(+id, userId);
   }
 }
