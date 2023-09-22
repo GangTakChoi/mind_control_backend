@@ -2,6 +2,7 @@ services:
   app:
     image: node:19-alpine
     command: sh -c "npm install && npx prisma db push && npm run build && npm run start:prod"
+    restart: always
     ports:
       - 3000:3000
     working_dir: /app
@@ -22,7 +23,7 @@ services:
   #     - .env
   mysqlDB:
     image: mysql
-    restart: unless-stopped
+    restart: always
     ports:
       - 3306:3306
     environment:
