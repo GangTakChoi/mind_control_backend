@@ -6,6 +6,7 @@ services:
     ports:
       - 3000:3000
     working_dir: /app
+    container_name: mind_control_app
     volumes:
       - ./:/app
     depends_on:    # mysql이 server 컨테이너보다 먼저 실행 되게 하는 설정
@@ -15,6 +16,7 @@ services:
     restart: always
     ports:
       - 3306:3306
+    container_name: mind_control_mysql
     environment:
       - MYSQL_DATABASE=MIND_CONTROL
       - MYSQL_CONTAINER_NAME=mysql_db
