@@ -1,26 +1,15 @@
 services:
   app:
     image: node:19-alpine
-    command: sh -c "npm install && npx prisma db push && npm run build && npm run start:prod"
+    command: sh -c "rm -rf ./node_modules && rm -rf ./dist && npm install && npx prisma db push && npm run build && npm run start:prod"
     restart: always
     ports:
       - 3000:3000
     working_dir: /app
     volumes:
       - ./:/app
-  # app:
-  #   image: node:18-alpine
-  #   restart: unless-stopped
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   container_name: mind_control_backend
-  #   ports:
-  #     - 3000:3000
-  #   depends_on:    # mysql이 server 컨테이너보다 먼저 실행 되게 하는 설정
-  #     - mysqlDB
-  #   env_file:
-  #     - .env
+    depends_on:    # mysql이 server 컨테이너보다 먼저 실행 되게 하는 설정
+      - mysqlDB
   mysqlDB:
     image: mysql
     restart: always
