@@ -9,8 +9,6 @@ services:
     container_name: mind_control_app
     volumes:
       - ./:/app
-    depends_on:    # mysql이 server 컨테이너보다 먼저 실행 되게 하는 설정
-      - mysqlDB
   mysqlDB:
     image: mysql
     restart: always
@@ -26,6 +24,4 @@ services:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
     volumes:
-      - db:/var/lib/mysql  # -v option
-volumes:
-    db:
+      - ./mysql_data:/var/lib/mysql  # -v option
