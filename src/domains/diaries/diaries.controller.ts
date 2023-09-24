@@ -32,7 +32,7 @@ export class DiariesController {
   }
 
   @Delete(':id')
-  async remove(@Param('id', ParseIntPipe) id: number, @Request() req) {
+  async remove(@Param('id') id: string, @Request() req) {
     const userId = req.user.id;
 
     const diary = await this.diariesService.findOne(id);
@@ -41,6 +41,6 @@ export class DiariesController {
       throw new BadRequestException();
     }
 
-    return this.diariesService.remove(+id, userId);
+    return this.diariesService.remove(id, userId);
   }
 }

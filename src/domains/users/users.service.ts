@@ -19,7 +19,7 @@ export class UsersService {
     return users;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.prisma.user.findUnique({ where: { id } });
   }
 
@@ -27,11 +27,11 @@ export class UsersService {
     return this.prisma.user.findUnique({ where: { accountId } });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
+  update(id: string, updateUserDto: UpdateUserDto) {
     return this.prisma.user.update({ where: { id }, data: updateUserDto });
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.prisma.user.delete({ where: { id } });
   }
 }

@@ -35,7 +35,7 @@ export class UsersController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+    return this.usersService.findOne(id);
   }
 
   @Public()
@@ -51,12 +51,12 @@ export class UsersController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+    return this.usersService.update(id, updateUserDto);
   }
 
   @Delete('me')
   dropMe(@Request() req) {
     const userId = req.user.id;
-    return this.usersService.remove(+userId);
+    return this.usersService.remove(userId);
   }
 }

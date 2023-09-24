@@ -6,7 +6,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class DiariesService {
   constructor(private prisma: PrismaService) {}
-  async create(createDiaryDto: CreateDiaryDto, userId: number) {
+  async create(createDiaryDto: CreateDiaryDto, userId: string) {
     const diaryInfo = await this.prisma.diary.create({
       data: {
         userId,
@@ -25,7 +25,7 @@ export class DiariesService {
     return this.prisma.diaryGoal.createMany({ data: goalList });
   }
 
-  findMyAll(userId: number) {
+  findMyAll(userId: string) {
     return this.prisma.diary.findMany({
       where: { userId },
       select: {
@@ -43,11 +43,11 @@ export class DiariesService {
     });
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.prisma.diary.findUnique({ where: { id } });
   }
 
-  remove(id: number, userId: number) {
+  remove(id: string, userId: string) {
     return this.prisma.diary.delete({ where: { id, userId } });
   }
 }

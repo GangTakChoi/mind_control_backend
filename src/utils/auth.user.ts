@@ -1,11 +1,11 @@
 export class AuthUser {
-  private static id: number;
+  private static id: string;
 
-  static getId(): number {
+  static getId(): string {
     return AuthUser.id;
   }
 
-  static setId(id: number) {
+  static setId(id: string) {
     AuthUser.id = id;
   }
 }

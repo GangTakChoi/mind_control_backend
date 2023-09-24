@@ -6,12 +6,12 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id    String     @id @default(auto()) @map("_id") @db.ObjectId
+  id    Int     @default(autoincrement()) @id
   accountId String @unique
   password String
   diaries Diary[]
@@ -20,27 +20,27 @@ model User {
 }
 
 model Goal {
-  id    String     @id @default(auto()) @map("_id") @db.ObjectId
+  id    Int     @default(autoincrement()) @id
   content   String
   user    User    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId  String     @db.ObjectId
+  userId  Int
 }
 
 model Diary {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
-  content   String?
+  id        Int      @default(autoincrement()) @id
+  content   String? @db.Text
   mindState MindState @default(NORMAL)
   user    User    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId  String     @db.ObjectId
+  userId  Int
   goals DiaryGoal[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model DiaryGoal {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  id        Int      @default(autoincrement()) @id
   diary Diary @relation(fields: [diaryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  diaryId String     @db.ObjectId
+  diaryId Int
   content String
   isCompleted Boolean @default(false)
 }
