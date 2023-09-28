@@ -4,6 +4,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { AllExceptionsFilter } from './utils/all.exceptions.filter';
 import * as fs from 'fs';
+import { morgan } from './utils/morgan.utils';
 
 async function bootstrap() {
   const httpsOptions = {
@@ -14,6 +15,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { httpsOptions });
   const { httpAdapter } = app.get(HttpAdapterHost);
   app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
+
+  app.use(morgan('customFormet'));
 
   app.useGlobalPipes(
     new ValidationPipe({

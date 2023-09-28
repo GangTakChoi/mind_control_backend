@@ -1,0 +1,11 @@
+services:
+  app:
+    image: node:18-alpine
+    command: sh -c "rm -rf ./node_modules && rm -rf ./dist && npm install && npx prisma db push && npm run build && npm run start:prod"
+    restart: always
+    ports:
+      - 3000:3000
+    working_dir: /app
+    container_name: mind_control_app
+    volumes:
+      - ./:/app
