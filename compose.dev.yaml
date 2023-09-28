@@ -1,16 +1,23 @@
 services:
   app:
-    image: node:18-alpine
-    command: sh -c "rm -rf ./node_modules && npm install && npx prisma db push && npm run start:dev"
+    image: node-mind:v1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh -c "npx prisma db push && npm run start:dev"
     restart: always
-    ports:
-      - 3000:3000
     working_dir: /app
-    container_name: mind_control_app
     volumes:
       - ./:/app
+      - /app/node_modules
+      - /app/dist
+    ports:
+      - 3000:3000
+    container_name: mind_control_app
     env_file:
       - ./config/.env.dev
+    depends_on:
+      - mongo1
 
   mongo1:
     image: mongo:6
