@@ -7,7 +7,7 @@
 
 ### 2. 실행
 ```bash
-$ docker compose -f compose.dev.yaml up
+$ docker compose -f compose.dev.yaml up -d
 
 # prisma 이용시 MongoDB 연결하는 경우 replica 설정을 필수로 해줘야함
 $ docker exec mongo1 mongosh -u root -p root! --eval "rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'mongo1:27017'}]});"
@@ -21,6 +21,6 @@ $ docker exec mongo1 mongosh -u root -p root! --eval "rs.initiate({_id: 'rs0', m
 
 ### 2. 실행
 ```bash
-$ docker compose up -f compose.prod.yaml -d
+$ docker compose -f compose.prod.yaml up -d
 ```
 
