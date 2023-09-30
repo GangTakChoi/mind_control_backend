@@ -7,10 +7,6 @@ services:
     command: sh -c "npx prisma db push && npm run start:prod"
     restart: always
     working_dir: /app
-    volumes:
-      - ./:/app
-      - /app/node_modules
-      - /app/dist
     ports:
       - 3000:3000
     container_name: mind_control_app
