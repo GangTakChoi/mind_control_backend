@@ -1,9 +1,8 @@
 
 # 개발용 서버 실행
 ### 1. 사전작업
-+ docker 설치
-+ docker compose 설치
-+ .env 파일에 [로컬 DB URL]을 사용한다.
++ Docker 설치
++ Docker Compose 설치
 
 ### 2. 실행
 ```bash
@@ -15,9 +14,8 @@ $ docker exec mongo1 mongosh -u root -p root! --eval "rs.initiate({_id: 'rs0', m
 
 # 상용 서버 실행
 ### 1. 사전작업
-+ docker 설치
-+ docker compose 설치
-+ .env 파일에 [상용 DB URL]을 사용한다.
++ Docker 설치
++ Docker Compose 설치
 
 ### 2. 실행
 ```bash
