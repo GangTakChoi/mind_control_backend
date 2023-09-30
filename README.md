@@ -22,3 +22,9 @@ $ docker exec mongo1 mongosh -u root -p root! --eval "rs.initiate({_id: 'rs0', m
 $ docker compose -f compose.prod.yaml up -d
 ```
 
+### 3. 배포
+> 이 배포 방식은 컨테이너가 로드되는 순간 5~10초간 서버가 중단되는 것을 알립니다. 
+```bash
+$ git pull
+$ docker compose -f compose.prod.yaml up -d --build
+```
