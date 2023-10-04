@@ -6,7 +6,7 @@ morgan.token('date', (req, res, tz) => {
 });
 morgan.format(
   'customFormet',
-  '[:date[Asia/Seoul]] ":method :url" :status :res[content-length] - :response-time ms',
+  '[:date[Asia/Seoul]] ":remote-addr :method :url" :status :res[content-length] - :response-time ms',
 );
 
 export { morgan };
