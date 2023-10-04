@@ -6,7 +6,6 @@ import {
   Param,
   Delete,
   Request,
-  ParseIntPipe,
   BadRequestException,
 } from '@nestjs/common';
 import { DiariesService } from './diaries.service';
